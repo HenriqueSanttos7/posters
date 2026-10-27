@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f7fb">
+  <title>Painel Fácil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <main class="layout">
+    <section class="controls" aria-label="Configurações do painel">
+      <h1>Monte seu painel</h1>
+      <section class="config-section section-art" aria-labelledby="title-art">
+        <div class="section-heading"><span class="step-icon art-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z"/><circle cx="9" cy="9" r="1.5"/><path d="m5 17 4-4 3 3 3-5 4 6"/></svg></span><h2 id="title-art">Arte</h2></div>
+        <label class="upload" id="uploadArea" for="imageInput"><input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/bmp"><span class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v4h14v-4"/></svg></span><span class="upload-title" id="uploadTitle">Enviar imagem</span><span class="upload-help" id="uploadHelp">PNG, JPG ou WEBP</span></label>
+      </section>
+      <section class="config-section section-paper" aria-labelledby="title-paper">
+        <div class="section-heading"><span class="step-icon paper-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 4v4h4M9 12h6M9 16h6"/></svg></span><h2 id="title-paper">Papel</h2></div>
+        <div class="field-row"><label class="field"><span>Formato</span><select id="paper"><option value="A4">A4 · 21 × 29,7 cm</option><option value="A3">A3 · 29,7 × 42 cm</option></select></label><div class="field"><span>Orientação</span><input id="orientation" type="hidden" value="portrait"><div class="orientation-options" role="group" aria-label="Orientação do papel"><button type="button" class="orientation-option active" data-orientation="portrait" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="3.5" width="11" height="17" rx="1"/></svg><span>Vertical</span></button><button type="button" class="orientation-option" data-orientation="landscape" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="17" height="11" rx="1"/></svg><span>Horizontal</span></button></div></div></div>
+        <label class="field margin-field"><span>Margem</span><div class="input-unit"><input id="margin" type="number" min="0" max="30" step="1" value="10"><span>mm</span></div></label>
+      </section>
+      <section class="config-section section-size" aria-labelledby="title-size">
+        <div class="section-heading"><span class="step-icon size-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4M8 16l8-8M9 8h7v7"/></svg></span><h2 id="title-size">Tamanho do painel</h2><button id="swapSize" class="icon-button turn-button" type="button" title="Inverter largura e altura" aria-label="Inverter largura e altura"><svg viewBox="0 0 24 24"><path d="M4 8h14m0 0-4-4m4 4-4 4M20 16H6m0 0 4 4m-4-4 4-4"/></svg></button></div>
+        <div class="field-row size-row"><label class="field"><span>Largura</span><div class="input-unit"><input id="width" type="number" min="1" max="2000" step="0.1" value="100"><span>cm</span></div></label><button class="icon-button lock-button locked" id="ratioLock" type="button" aria-label="Manter proporção da imagem" title="Manter proporção da imagem"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></button><label class="field"><span>Altura</span><div class="input-unit"><input id="height" type="number" min="1" max="2000" step="0.1" value="100"><span>cm</span></div></label></div>
+        <label class="check-row"><input id="economy" type="checkbox" checked><span class="custom-check" aria-hidden="true"></span><span class="check-copy"><strong>Economizar folhas</strong></span></label>
+      </section>
+      <section class="config-section section-guides" aria-labelledby="title-guides">
+        <div class="section-heading"><span class="step-icon guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 4 16 16M8 4l-4 4m8-4L4 12m16 4-4 4m4-8-8 8"/><circle cx="12" cy="12" r="2"/></svg></span><h2 id="title-guides">Marcas</h2></div>
+        <label class="check-row compact"><input id="cutGuides" type="checkbox" checked><span class="custom-check" aria-hidden="true"></span><span class="check-copy"><strong>Guias de corte</strong></span></label>
+        <label class="check-row compact"><input id="pageNumbers" type="checkbox" checked><span class="custom-check" aria-hidden="true"></span><span class="check-copy"><strong>Numeração</strong></span></label>
+      </section>
+      <div class="notice" id="notice" role="status">Envie uma imagem para começar.</div>
+      <button id="download" class="download-button" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 17v4h16v-4"/></svg> Baixar PDF</button>
+    </section>
+    <section class="preview-panel" aria-label="Prévia do painel">
+      <div class="preview-top"><h2>Prévia</h2><div class="view-switch" role="tablist" aria-label="Modo de prévia"><button id="viewSheets" class="view-option active" role="tab" aria-selected="true" type="button">Folhas</button><button id="viewPanel" class="view-option" role="tab" aria-selected="false" type="button">Grade do painel</button></div></div>
+      <div class="canvas-wrap" id="canvasWrap"><div id="emptyState" class="empty-state"><div class="empty-art" aria-hidden="true"><span>▧</span><i></i><i></i><i></i><i></i></div><strong>A prévia aparece aqui</strong></div><canvas id="previewCanvas" hidden></canvas></div>
+      <div class="stats"><div class="stat"><span>TAMANHO</span><strong id="sizeStat">100 × 100 cm</strong></div><div class="stat"><span>FOLHAS</span><strong id="sheetsStat">—</strong></div><div class="stat"><span>PARTES POR FOLHA</span><strong id="gridStat">—</strong></div></div>
+      <div class="preview-footer"><span class="legend"><i></i> Cada retângulo é uma parte</span><span id="paperInfo">A4 · Vertical</span></div>
+    </section>
+  </main>
+</body>
+</html>
